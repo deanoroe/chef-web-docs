@@ -23,6 +23,7 @@ The ``backup`` subcommand is used to back up all Chef server data. This subcomma
 * Requires a ``chef-server-ctl reconfigure`` prior to running the command
 * Should not be run in a Chef server configuration with an external PostgreSQL database; `use knife ec backup <https://github.com/chef/knife-ec-backup>`__ instead
 * Puts the initial backup in the ``/var/opt/chef-backup`` directory as a tar.gz file; move this backup to a new location for safe keeping
+* Has a default timeout for shell commands of 10 minutes. If the command takes longer than this to complete then it will fail and the backup file will not be generated.
 
 .. end_tag
 
@@ -34,6 +35,9 @@ This subcommand has the following options:
 
 ``-y``, ``--yes``
    Use to specify if the Chef server can go offline during tar.gz-based backups.
+   
+``-t``, ``--timeout [string]``
+   Use to change the shell command timeout from its default setting of 10 minutes. input desired timeout in milliseconds.
 
 .. end_tag
 
